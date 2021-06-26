@@ -28,7 +28,7 @@ programa
 				escreva("Juvenil A ")
 					} senao se (idade>=14 e idade <=17){
 					escreva("Juvenil B ")
-						} senao (idade>=18){
+						} senao  se (idade>=18){
 						escreva("Adultos ")
 						} 
 				
@@ -39,7 +39,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 683; 
+ * @POSICAO-CURSOR = 686; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
