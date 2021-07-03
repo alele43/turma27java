@@ -6,25 +6,38 @@ programa
 	
 	funcao inicio()
 	{
+		// R$ 10,00 por hora
+		//Quando o número de horas exceder a 50 = excesso de pagamento armazenando-o na variável 
+		//hora excedente de trabalho vale R$ 20,00
+		//caso contrário zerar tal variável
+		//imprimir o salário total e o salário excedente.
 
-		real salarioBase, adicional, horasExtras, salarioTotal, horasTrabalhadas
 		
-		escreva("Digite suas horas trabalhadas: ")
-		leia(horasTrabalhadas)
+		real numHoras = 0.0
+		real horasExtra = 0.0
+		real salarioTotal = 0.0 
+		real salarioExtra = 0.0
+		
+		
+		
 
-		horasExtras = horastrabalhadas-50
-		adicional = horasExtras*20
-		salarioTotal = salarioBase + adicional
-		salarioBase = horastrabalhadas*10
+		escreva("Digite quantas horas trabalhadas: ")
+		leia(numHoras)
 		
-		se (horasTrabalhadas >50) {
-			escreva("Seu salário total é: " +salariototal)
-		} senao {
+		salarioTotal = numHoras * 10 
+		escreva("\nSeu salário é: " ,salarioTotal)    
+		
+		se( numHoras > 50) {
+			horasExtra = numHoras - 50
+			salarioExtra = horasExtra*20
+			escreva("\nSeu salário extra é: " ,salarioExtra)
 			
-			escreva("Seu salário total é: " +salarioBase)
-			
-			}		
-			
+			} 
+			 senao {
+			 	
+				escreva("\nVocê não realizou horas extras!")    
+			}
+				
 	}
 }
 /* $$$ Portugol Studio $$$ 
@@ -32,7 +45,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 439; 
+ * @POSICAO-CURSOR = 521; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
