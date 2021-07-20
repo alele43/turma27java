@@ -26,7 +26,7 @@ programa
 
 	funcao linha (inteiro  tamanho){
 		para ( inteiro y = 0;y<=tamanho;y++){
-            escreva("-")
+           // escreva("-")
 		}
 	}
 }
@@ -35,7 +35,7 @@ programa
  * Esta seção do arquivo guarda informações do Portugol Studio.
  * Você pode apagá-la se estiver utilizando outro editor.
  * 
- * @POSICAO-CURSOR = 518; 
+ * @POSICAO-CURSOR = 516; 
  * @PONTOS-DE-PARADA = ;
  * @SIMBOLOS-INSPECIONADOS = ;
  * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;

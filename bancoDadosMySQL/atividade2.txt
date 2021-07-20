@@ -1,0 +1,43 @@
+Query 1 -- criar banco de dados
+
+		create database db_ecommerce;
+
+Query 2 -- criar tabela 
+
+use db_rh;
+
+	create table tb_produtos(
+		id bigint auto_increment,
+    		nomeRemedio varchar (30) not null,
+    		fabricante varchar (30) not null,
+    		preco decimal (10,2),
+    		ativo boolean,
+    		primary key(id)
+    
+		);
+
+Query 3 -- inserir dados na tabela 
+
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Voltaren", "Novartis", 300.00, true); 
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Aspirina", "Bayer", 1800.00, true); 
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Neosaldina", "Takeda", 380.00, true); 		
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Decadron", "Ache", 2000.00, true); 
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Lipless", "Biolab", 3000.00, true); 
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Miosan", "Apsen", 315.00, true); 
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Advil", "Wyeth", 1850.00, true); 
+	insert into tb_produtos(nomeRemedio, fabricante, preco, ativo) values ("Cataflan", "Novartis", 100.00, true); 
+
+Query 4 -- retornar preco maior que 500,00
+
+	select * from tb_produtos where preco > 500.00
+
+Query 5 -- retornar preco menor que 500,00
+
+	select * from tb_produtos where preco < 500.00
+
+Query 6 -- update (atualizar informações)
+
+	update tb_produtos set preco = 1850.00
+		where id = 7;
+
+

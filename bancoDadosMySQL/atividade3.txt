@@ -1,0 +1,43 @@
+Query 1 -- criar banco de dados
+
+		create database db_escola;
+
+Query 2 -- criar tabela 
+
+use db_rh;
+
+	create table tb_alunes(
+		id bigint auto_increment,
+    		nome varchar (30) not null,
+    		turma varchar (30) not null,
+		periodo varchar (30) not null,    		
+		nota decimal (10,2),
+    		ativo boolean,
+    		primary key(id)
+    
+		);
+
+Query 3 -- inserir dados na tabela 
+
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Alessandra", "C", "tarde", 5.5, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Bruna", "A", "manhã", 9.5, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Bianca", "C", "tarde", 6.5, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Carlos", "B", "manhã", 7.5, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Carol", "C","tarde", 10.0, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Diego", "A", "tarde", 3.0, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Juliana", "B","manhã", 8.0, true); 
+	insert into tb_alunes(nome, turma, periodo, nota, ativo) values ("Ursula", "B", "tarde", 9.3, true); 
+
+	
+Query 4 -- retornar nota maior que 7,0
+
+	select * from tb_alunes where nota > 7.00
+
+Query 5 -- retornar nota menor que 7,00
+
+	select * from tb_alunes where nota < 7.00
+
+Query 6 -- update (atualizar informações)
+
+	update tb_alunes set periodo = manha
+		where id = 1;
