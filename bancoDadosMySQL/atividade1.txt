@@ -1,0 +1,45 @@
+Query 1 -- criar banco de dados
+
+		create database db_rh;
+
+Query 2 -- criar tabela 
+
+use db_rh;
+
+	create table tb_funcionaries(
+		id bigint auto_increment,
+    		nome varchar (30) not null,
+    		cargo varchar (30) not null,
+    		salario decimal (10,2),
+    		ativo boolean,
+    		primary key(id)
+    
+		);
+
+Query 3 -- inserir dados na tabela 
+
+	insert into tb_funcionaries(nome, cargo, salario, ativo) values ("Alessandra", "Farmacêutica", 2465.00, true); 
+	insert into tb_funcionaries(nome, cargo, salario, ativo) values ("Maria", "Aux Enf", 1800.00, true);
+	insert into tb_funcionaries(nome, cargo, salario, ativo) values ("Adilson", "Aux geral", 1043.00, true);
+	insert into tb_funcionaries(nome, cargo, salario, ativo) values ("Gustavo", "Motorista", 1200.00, true);
+	insert into tb_funcionaries(nome, cargo, salario, ativo) values ("Gabriela", "Enfermeira", 2500.00, true);
+
+Query 4 -- retornar salário maior que 2000,00
+
+	select * from tb_funcionaries where salario > 2000.00
+
+Query 5 -- retornar salario menor que 2000,00
+
+	select * from tb_funcionaries where salario < 2000.00
+
+Query 6 -- update (atualizar informações)
+
+	update tb_funcionaries set salario = 1850.00
+		where id = 2;
+
+
+
+
+
+ 
+

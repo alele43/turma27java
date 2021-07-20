@@ -10,7 +10,22 @@ public class ContaEstudantil extends Conta{
 			this.limiteEstudantil = limiteEstudantil;
 		}
 		
-	
+
+		public double getLimiteEstudantil() {
+			return limiteEstudantil;
+		}
+
+		public void setLimiteEstudantil(double limiteEstudantil) {
+			this.limiteEstudantil = limiteEstudantil;
+		}
+		
+		
+		public void usarLimiteEstudantil(double valor) {
+			
+			this.limiteEstudantil = this.limiteEstudantil - valor;
+			super.credito(valor);
+			
+		}
 		
 		
 		
