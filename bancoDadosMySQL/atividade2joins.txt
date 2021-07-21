@@ -1,0 +1,65 @@
+Query 1 - criar o banco de dados
+
+-- create database db_pizzaria_legal;
+
+Query 2 -- criar tabela categoria 
+ 	use  db_pizzaria_legal;
+
+	create table tb_categoria (
+		id bigint auto_increment,
+    		estoque varchar (10) not null,
+    		categoria varchar (30) not null,
+    		primary key(id)
+	);
+
+Query 3 -- popular tabela categoria 
+
+insert into tb_categoria (estoque, categoria) values ("Sim", "Tradicional");
+insert into tb_categoria (estoque, categoria) values ("Sim", "Doce");
+insert into tb_categoria (estoque, categoria) values ("Sim", "Vegana");
+insert into tb_categoria (estoque, categoria) values ("Sim", "Premium");
+insert into tb_categoria (estoque, categoria) values ("Não", "Estufada");
+
+Query 4 -- criar tabela pizza
+
+use db_pizzaria_legal;
+
+create table tb_pizza (
+	id bigint auto_increment,
+    sabor varchar(30) not null,
+    preco decimal (10,2),
+    borda boolean,
+    categoria_id bigint,
+    primary key (id),
+    foreign key (categoria_id) references tb_categoria(id)
+);
+
+Query 5 -- criar tabela pizza
+
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Mussarela", 69.99, true, 1);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Calabresa", 59.99, true, 1);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Camarão", 79.99, false, 4);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Mussarela", 69.99, false, 1);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Chocolate", 89.99, true, 2);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Palmito", 29.99, true, 3);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Peperoni", 89.99, false, 5);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Portuguesa", 69.99, true, 1);
+insert into tb_pizza (sabor, preco,borda, categoria_id) values ("Prestigio", 49.99, false, 2);
+
+Query 6 --  select que retorne os Produtos com o valor maior do que 45 reais
+select * from tb_pizza where preco > 45.00
+
+Query 7 -- select trazendo  os Produtos com valor entre 29 e 60 reais
+select * from tb_pizza where preco > 29.00 and preco <=60.00
+
+Query 8 --  select  utilizando LIKE buscando os Produtos com a letra C.
+select * from tb_pizza where sabor like "C%"
+
+Query 9 --select com Inner join entre  tabela categoria e pizza.
+select * from tb_pizza
+	inner join tb_categoria on tb_pizza.id = tb_pizza.id
+
+Query 10 -- select onde traga todos os Produtos de uma categoria específica
+select * from tb_pizza
+	inner join tb_categoria on tb_pizza.id = tb_pizza.categoria_id
+        where tb_categoria.categoria = "Doce"

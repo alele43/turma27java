@@ -1,0 +1,69 @@
+Query 1 -- criar banco de dados 
+ 	create database db_generation_game_online
+
+Query 2 --criar tabela classe
+	
+	use db_generation_game_online;
+	create table tb_classe (
+		id bigint auto_increment,
+    		nome varchar (30) not null, 
+    		classe varchar (30) not null, 
+    		primary key (id)
+	);  
+
+Query 3 -- popular tabela classe
+
+	insert into tb_classe (nome, classe) values ("Anjinha", "Fada");
+	insert into tb_classe (nome, classe) values ("Lele", "Guerreira");
+	insert into tb_classe (nome, classe) values ("KakauGatinha", "Lutadora");
+	insert into tb_classe (nome, classe) values ("JovemMistica", "Bruxa");
+	insert into tb_classe (nome, classe) values ("Mandraka", "Atiradora");
+
+Query 4 -- criar tabela personagem 
+
+	use db_generation_game_online;
+
+	create table tb_personagem (
+		id bigint auto_increment,
+    		ataque int,
+    		defesa int,
+    		habilidade varchar(30) not null,
+    		nivel int,
+    		classe_id bigint not null,
+    		primary key (id),
+    		foreign key (classe_id) references tb_classe(id)
+	);
+
+Query 5 -- populat tabela personagem 
+
+	insert into tb_personagem(ataque, defesa, habilidade, nivel, classe_id) values (3500, 700,"Bola de fogo", "47",3);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (2100, 890,"Bola de canhão", "25",5);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (1435, 478,"Pirueta", "33",3);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (2000, 2000,"cura", "87",4);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (1999, 1876,"chute giratorio", "76",3);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (5467, 2100,"Feitiço petrificante", "99",4);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (1117, 9000,"Teletransporte", "87",1);
+	insert into tb_personagem(ataque, defesa, habilidade, nivel,classe_id) values (300, 500,"Pó mágico", "50",1);
+
+Query 6 -- select  ataque maior do que 2000
+
+	select * from tb_personagem where ataque > 2000
+
+Query 7 -- select  poder de defesa entre 1000 e 2000
+	
+	select * from tb_personagem where defesa >= 1000 AND defesa <=2000 
+	
+
+Query 8 -- select  utilizando LIKE buscando os personagens com a letra C.
+
+	select * from tb_personagem where classe_id like 'C_'
+
+Query 9 --select com Inner join entre  tabela classe e personagem
+	
+	select * from tb_personagem 
+	inner join tb_classe on tb_classe.id = tb_personagem.id
+
+Query 10 -- select onde traga todos os personagem de uma classe específica 
+	select * from tb_personagem
+	inner join tb_classe on tb_classe.id = tb_personagem.classe_id
+        where tb_classe.classe = "bruxa"
