@@ -1,0 +1,73 @@
+Query 1 -- criar banco de dados
+create database db_construindo_a_nossa_vida
+
+Query 2 -- criar tabela categoria
+
+use db_construindo_a_nossa_vida;
+
+create table tb_categoria_deposito (
+	id bigint auto_increment,
+    	tipo varchar (30) not null,
+    	estoque boolean,
+    
+    primary key (id)
+    
+);
+
+Query 3 -- popular tabela categoria 
+
+insert into tb_categoria_deposito (tipo, estoque) values ("Alvenaria", true);
+insert into tb_categoria_deposito (tipo, estoque) values ("Marcenaria", true);
+insert into tb_categoria_deposito (tipo, estoque) values ("Hidraúlica", true);
+insert into tb_categoria_deposito (tipo, estoque) values ("Jardinagem", true);
+insert into tb_categoria_deposito (tipo, estoque) values ("Acabamentos", true);
+
+Query 4 -- criar tabela produto
+
+use db_construindo_a_nossa_vida;
+
+create table tb_produto_deposito (
+	id bigint auto_increment,
+    	nome varchar(30) not null,
+    	fornecedor varchar(30) not null,
+   	preco decimal (10,2),
+	unidade varchar(30) not null, 
+    	tipo_id bigint not null,
+   	 primary key (id),
+    	foreign key (tipo_id) references tb_categoria_deposito(id)
+    
+);
+
+Query 5 -- popular tabela produto
+
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Cimento", "TelhaNorte", 30.00,"pacote", 1);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Madeira", "C&C", 1025.00, "metro", 2);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Cano pvc", "Dicico", 18.00, "pacote", 3);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Mangueira", "TelhaNorte", 82.00,"metro", 4);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Porcelanato", "C&C", 58.00,"metro", 5);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Areia", "Dicico", 110.00, "metro", 1);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Cola para PVC", "Dicico", 2.00, "pacote", 2);
+insert into tb_produto_deposito (nome, fornecedor, preco, unidade, tipo_id) values ("Tinta latex", "Suvenil", 302.50, 5);
+
+Query 6 -- produto maior que 50.00
+
+select * from tb_produto_deposito where preco > 50.00;
+
+Query 7 -- produto entre 3.00 e 60.00
+
+select * from tb_produto_deposito where preco > 3.00 and preco < 60.00;
+
+Query 8 -- selecionar produto com nomes que começam com  "C"
+
+select * from tb_produto_deposito where nome like "C%";
+
+Query 9 -- selecionar as duas tabelas
+
+select * from tb_produto_deposito
+	inner join tb_categoria_deposito on tb_categoria_deposito.id = tb_produto_deposito.tipo_id
+
+Query 10 -- selecionar todos os produtos da mesma categoria "Hidraúlica"
+
+select tb_produto_deposito.nome, tb_categoria_deposito.tipo from tb_produto_deposito
+inner join tb_categoria_deposito on tb_categoria_deposito.id = tb_produto_deposito.tipo_id
+where tb_categoria_deposito.tipo = "Hidraúlica"

@@ -1,0 +1,72 @@
+Query 1 -- criar banco de dados
+create database db_farmacia_do_bem;
+
+Query 2 -- criar tabela categoria
+use db_farmacia_do_bem;
+create table tb_categoria_farma (
+	id bigint auto_increment,
+    tipo varchar (30) not null,
+    estoque boolean,
+    
+    primary key (id)
+    
+);
+
+Query 3 -- popular tabela categoria 
+
+insert into tb_categoria_farma (tipo, estoque) values ("Cosmético", true);
+insert into tb_categoria_farma (tipo, estoque) values ("Antibiótico", true);
+insert into tb_categoria_farma (tipo, estoque) values ("Analgésicos", true);
+insert into tb_categoria_farma (tipo, estoque) values ("Vitaminas", true);
+insert into tb_categoria_farma (tipo, estoque) values ("Psicotrópicos", true);
+
+Query 4 -- criar tabela produto
+
+use db_farmacia_do_bem;
+create table tb_produto_farma (
+	id bigint auto_increment,
+    nome varchar(30) not null,
+    laboratorio varchar(30) not null,
+    preco decimal (10,2),
+    receita boolean,
+    tipo_id bigint not null,
+    primary key (id),
+    foreign key (tipo_id) references tb_categoria_farma(id)
+    
+);
+
+Query 5 -- popular tabela produto
+
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Antirugas", "Vichy", 98.00, false, 1);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Amoxicilina", "EMS", 35.00, true, 2);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Buscopan", "Boehringer Ingelheim ", 18.00, false, 3);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Lavitan", "Cimed", 20.00, false, 4);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Depakene", "Abbot", 78.00, true, 5);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Dorflex", "Sanofi", 8.00, false, 3);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Bronzeador", "Cenoura&Bronze", 33.00, false, 1);
+insert into tb_produto_farma (nome, laboratorio, preco, receita, tipo_id) values ("Dipirona", "Bayer", 2.50, false, 3);
+
+Query 6 -- produto maior que 50.00
+
+select * from tb_produto_farma where preco > 50.00;
+
+Query 7 -- produto entre 3.00 e 60.00
+
+select * from tb_produto_farma where preco > 3.00 and preco < 60.00;
+
+Query 8 -- selecionar produto com nomes que começam com  "B"
+
+select * from tb_produto_farma where nome like "B%";
+
+Query 9 -- selecionar as duas tabelas
+
+select * from tb_produto_farma
+	inner join tb_categoria_farma on tb_categoria_farma.id = tb_produto_farma.tipo_id
+
+Query 10 -- selecionar todos os produtos da mesma categoria "Analgésicos"
+
+select tb_produto_farma.nome, tb_categoria_farma.tipo from tb_produto_farma 
+inner join tb_categoria_farma on tb_categoria_farma.id = tb_produto_farma.tipo_id
+where tb_categoria_farma.tipo = "Analgésicos"
+
+

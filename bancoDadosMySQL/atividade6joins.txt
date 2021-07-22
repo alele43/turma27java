@@ -1,0 +1,73 @@
+Query 1 -- criar banco de dados
+create database db_cursoDaMinhaVida
+
+Query 2 -- criar tabela categoria
+
+use db_cursoDaMinhaVida;
+
+create table tb_categoria_curso (
+	id bigint auto_increment,
+    	area varchar (30) not null,
+    	ativo boolean,
+    
+    primary key (id)
+    
+);
+
+Query 3 -- popular tabela categoria 
+
+insert into tb_categoria_curso (area, ativo) values ("Saúde", true);
+insert into tb_categoria_curso (area, ativo) values ("Administração", true);
+insert into tb_categoria_curso (area, ativo) values ("Tecnologia", true);
+insert into tb_categoria_curso (area, ativo) values ("Engenharia", true);
+insert into tb_categoria_curso (area, ativo) values ("Educação", true);
+
+Query 4 -- criar tabela produto
+
+use db_cursoDaMinhaVida;
+
+create table tb_produto_curso (
+	id bigint auto_increment,
+    	nome varchar(30) not null,
+    	periodo varchar(30) not null,
+   	preco decimal (10,2),
+	duracao varchar(30) not null, 
+    	area_id bigint not null,
+   	 primary key (id),
+    	foreign key (area_id) references tb_categoria_curso(id)
+    
+);
+
+Query 5 -- popular tabela produto
+
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Auxiliar Farmacia", "Noite", 300.00,"18 meses", 1);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Excel básico", "Tarde", 25.00, "8 horas", 2);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Java", "Noite", 180.00, "16 horas", 3);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Engenharia Civil", "Manhã", 820.00,"5 anos", 4);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("História", "Manhã", 258.00,"24 meses", 5);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Lógica de Programação", "Noite", 110.00, "10 horas", 3);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Análise e desenvolvimento de sistemas", "Noite", 200.00, "18 meses", 3);
+insert into tb_produto_curso (nome, periodo, preco, duracao, area_id) values ("Análises Clínicas", "Tarde", 102.50,"5 meses", 1);
+
+Query 6 -- produto maior que 50.00
+
+select * from tb_produto_curso where preco > 50.00;
+
+Query 7 -- produto entre 30.00 e 1060.00
+
+select * from tb_produto_curso where preco > 30.00 and preco < 1060.00;
+
+Query 8 -- selecionar produto com nomes que começam com  "J"
+
+select * from tb_produto_curso where nome like "J%";
+
+Query 9 -- selecionar as duas tabelas
+
+select * from tb_produto_curso
+	inner join tb_categoria_curso on tb_categoria_curso.id = tb_produto_curso.area_id
+
+Query 10 -- selecionar todos os produtos da mesma categoria "Tecnologia"
+
+select tb_produto_curso.nome, tb_categoria_curso.area from tb_produto_curso
+inner join tb_categoria_curso on tb_categoria_curso.id = tb_produto_curso.area_id
+where tb_categoria_curso.area = "Tecnologia"
